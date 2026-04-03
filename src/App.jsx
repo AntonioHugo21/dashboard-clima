@@ -2,6 +2,11 @@ import {useState} from "react";
 
 function App() {
   const [cidade, setCidade] = useState("");
+  const [cidadeBuscada, setCidadeBuscada] = useState("");
+
+  function buscarCidade() {
+    setCidadeBuscada(cidade);
+  }
 
   return (
     <div>
@@ -14,9 +19,8 @@ function App() {
        onChange={(e) => setCidade(e.target.value)}
         />
 
-        <p>Cidade digitada: {cidade}</p>
-
-        <button>Buscar</button>
+        <button onClick={buscarCidade}>Buscar</button>
+        <p>Cidade buscada: {cidadeBuscada}</p>
     </div>
   )
 }
