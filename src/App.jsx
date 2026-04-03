@@ -42,7 +42,9 @@ function App() {
         onChange={(e) => setCidade(e.target.value)}
       />
 
-      <button onClick={buscarCidade}>Buscar</button>
+      <button onClick={buscarCidade} disabled={loading}>
+        {loading? "Buscando...":"Buscar"}
+      </button>
 
       {dadosClima && dadosClima.main && (
         <div>
