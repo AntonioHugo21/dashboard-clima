@@ -3,18 +3,32 @@ import { useState } from "react";
 function App() {
   const [cidade, setCidade] = useState("");
   const [dadosClima, setDadosClima] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState("");
 
   async function buscarCidade() {
     const apiKey = "3b7386a79f55113340ea5739f7bcd352";
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&APPID=${apiKey}&units=metric&lang=pt_br`;
 
-    const resposta = await fetch(url);
-    const dados = await resposta.json();
+    setLoading(true);
+    setErro("");
 
-    console.log(dados);
+    try{
+      const resposta = await fetch(url);
+      const dados = await resposta.json();
 
-    setDadosClima(dados);
+      if (dados.cod == "404") {
+        setErro("Cidade não encontrada ❌");
+        setDadosClima(null);
+      } else {
+        setDadosClima(dados);
+      }
+    } catch (error) {
+      setErro("Erro ao buscar dados ⚠️")
+    }
+
+    setLoading(false);
   }
 
   return (
@@ -37,6 +51,10 @@ function App() {
           <p>Clima: {dadosClima.weather[0].description}</p>
         </div>
       )}
+
+      {loading && <p>Carregando... ⏳</p>}
+
+      {erro && <p>{erro}</p>}
     </div>
   );
 }
