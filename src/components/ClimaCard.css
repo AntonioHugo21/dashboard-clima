@@ -1,0 +1,14 @@
+.card {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 16px;
+  width: 280px;
+  margin: 20px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}

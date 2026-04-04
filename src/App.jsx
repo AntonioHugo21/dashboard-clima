@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./App.css";
+import ClimaCard from "./components/ClimaCard";
 
 function App() {
   const [cidade, setCidade] = useState("");
@@ -14,7 +16,7 @@ function App() {
     setLoading(true);
     setErro("");
 
-    try{
+    try {
       const resposta = await fetch(url);
       const dados = await resposta.json();
 
@@ -25,14 +27,14 @@ function App() {
         setDadosClima(dados);
       }
     } catch (error) {
-      setErro("Erro ao buscar dados ⚠️")
+      setErro("Erro ao buscar dados ⚠️");
     }
 
     setLoading(false);
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>🌤️ Dashboard Climático</h1>
 
       <input
@@ -43,29 +45,13 @@ function App() {
       />
 
       <button onClick={buscarCidade} disabled={loading}>
-        {loading? "Buscando...":"Buscar"}
+        {loading ? "Buscando..." : "Buscar"}
       </button>
-
-      {dadosClima && dadosClima.main && (
-        <div className="card">
-          <h2>{dadosClima.name}</h2>
-
-          <img 
-            src={`https://openweathermap.org/img/wn/${dadosClima.weather[0].icon}@2x.png`}
-            alt="Ícone do clima" 
-          />
-
-          <p>🌡️ {dadosClima.main.temp}°C</p>
-          <p>☁️ {dadosClima.weather[0].description}</p>
-          <p>🥵 Sensação térmica: {dadosClima.main.feels_like}°C</p>
-          <p>💨 Vento: {(dadosClima.wind.speed * 3.6).toFixed(1)} km/h</p>
-        </div>
-      )}
 
       {loading && <p>Carregando... ⏳</p>}
       {erro && <p>{erro}</p>}
 
-      
+      <ClimaCard dados={dadosClima} />
     </div>
   );
 }
