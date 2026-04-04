@@ -47,16 +47,23 @@ function App() {
       </button>
 
       {dadosClima && dadosClima.main && (
-        <div>
+        <div className="card">
           <h2>{dadosClima.name}</h2>
-          <p>Temperatura: {dadosClima.main.temp}°C</p>
-          <p>Clima: {dadosClima.weather[0].description}</p>
+
+          <img 
+            src={`https://openweathermap.org/img/wn/${dadosClima.weather[0].icon}@2x.png`}
+            alt="Ícone do clima" 
+          />
+
+          <p>🌡️ {dadosClima.main.temp}°C</p>
+          <p>☁️ {dadosClima.weather[0].description}</p>
         </div>
       )}
 
       {loading && <p>Carregando... ⏳</p>}
-
       {erro && <p>{erro}</p>}
+
+      
     </div>
   );
 }
