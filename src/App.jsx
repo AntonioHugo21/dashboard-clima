@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import ClimaCard from "./components/ClimaCard";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [cidade, setCidade] = useState("");
@@ -37,11 +38,11 @@ function App() {
     <div className="container">
       <h1>🌤️ Dashboard Climático</h1>
 
-      <input
-        type="text"
-        placeholder="Digite uma cidade"
-        value={cidade}
-        onChange={(e) => setCidade(e.target.value)}
+      <SearchBar
+        cidade={cidade}
+        setCidade={setCidade}
+        buscarCidade={buscarCidade}
+        loading={loading}
       />
 
       <button onClick={buscarCidade} disabled={loading}>

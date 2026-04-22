@@ -14,8 +14,8 @@ function ClimaCard({dados}) {
 
             <p>🌡️ {dados.main.temp}°C</p>
             <p>☁️ {dados.weather[0].description}</p>
-            <p>🥵 Sensação térmica: {dadosClima.main.feels_like}°C</p>
-            <p>💨 Vento: {(dadosClima.wind.speed * 3.6).toFixed(1)} km/h</p>
+            <p>🥵 Sensação térmica: {dados.main.feels_like}°C</p>
+            <p>💨 Vento: {(dados.wind.speed * 3.6).toFixed(1)} km/h</p>
         </div>
     );
 }
