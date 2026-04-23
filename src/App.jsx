@@ -8,6 +8,7 @@ function App() {
   const [dadosClima, setDadosClima] = useState(null);
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
+  const [historico, setHistorico] = useState([]);
 
   async function buscarCidade() {
     const apiKey = "3b7386a79f55113340ea5739f7bcd352";
@@ -32,6 +33,11 @@ function App() {
     }
 
     setLoading(false);
+
+    setHistorico((prev) => {
+      const listaFiltrada = prev.filter((item) => item !== cidade);
+      return [cidade, ...listaFiltrada].slice(0, 5);
+    });
   }
 
   return (
@@ -44,6 +50,17 @@ function App() {
         buscarCidade={buscarCidade}
         loading={loading}
       />
+
+      <div className="historico">
+        {historico.map((item, index) =>(
+          <button key={index} onClick={() => {
+            setCidade(item);
+            buscarCidade();
+          }}>
+            {item}
+          </button>
+        ))}
+      </div>
 
       {loading && <p>Carregando... ⏳</p>}
       {erro && <p>{erro}</p>}

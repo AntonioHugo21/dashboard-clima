@@ -50,3 +50,20 @@ button:disabled {
 .card:hover{
   transform: scale(1.05);
 }
+
+.historico {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.historico button{
+  background: #334155;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
