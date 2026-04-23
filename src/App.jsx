@@ -45,10 +45,6 @@ function App() {
         loading={loading}
       />
 
-      <button onClick={buscarCidade} disabled={loading}>
-        {loading ? "Buscando..." : "Buscar"}
-      </button>
-
       {loading && <p>Carregando... ⏳</p>}
       {erro && <p>{erro}</p>}
 

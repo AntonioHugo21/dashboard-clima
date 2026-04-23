@@ -6,11 +6,18 @@ function SearchBar({cidade, setCidade, buscarCidade, loading}) {
                 placeholder="Digite a cidade"
                 value={cidade}
                 onChange={(e) => setCidade(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        buscarCidade();
+                    }
+                }}
             />
 
             <button onClick={buscarCidade} disabled={loading}>
                 {loading ? "Buscando" : "Buscar"}
             </button>
+
+            
         </div>
     );
 }
